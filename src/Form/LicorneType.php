@@ -25,12 +25,6 @@ class LicorneType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Licorne::class,
-            // 'constraints' =>[
-            //     new Assert\Expression([
-            //         'expression' => 'value["strenght"] + value["intelligence"] + value["esquive"] > 5',
-            //         'message'=> 'Les 10 points sont à répartir correctement'
-            //     ])
-            // ]
         ]);
     }
 }
