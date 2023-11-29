@@ -26,7 +26,7 @@ class Licorne
     private ?int $esquive = null;
 
     #[ORM\Column]
-    private ?int $pv = null;
+    private ?int $pv = 10;
 
     public function getId(): ?int
     {
