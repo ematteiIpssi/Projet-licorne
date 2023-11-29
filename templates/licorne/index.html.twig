@@ -1,43 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Licorne index{% endblock %}
+{% block title %}ScoreBoard{% endblock %}
 
 {% block body %}
-    <h1>Licorne index</h1>
+    <div class="container mt-5">
+        <h1>Scordboard</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Strenght</th>
-                <th>Intelligence</th>
-                <th>Esquive</th>
-                <th>Pv</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for licorne in licornes %}
-            <tr>
-                <td>{{ licorne.id }}</td>
-                <td>{{ licorne.nom }}</td>
-                <td>{{ licorne.strenght }}</td>
-                <td>{{ licorne.intelligence }}</td>
-                <td>{{ licorne.esquive }}</td>
-                <td>{{ licorne.pv }}</td>
-                <td>
-                    <a href="{{ path('app_licorne_show', {'id': licorne.id}) }}">show</a>
-                    <a href="{{ path('app_licorne_edit', {'id': licorne.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Strenght</th>
+                    <th>Intelligence</th>
+                    <th>Esquive</th>
+                    <th>Pv</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for licorne in licornes %}
+                    <tr>
+                        <td>{{ licorne.id }}</td>
+                        <td>{{ licorne.nom }}</td>
+                        <td>{{ licorne.strenght }}</td>
+                        <td>{{ licorne.intelligence }}</td>
+                        <td>{{ licorne.esquive }}</td>
+                        <td>{{ licorne.pv }}</td>
+                        <td>
+                            <a href="{{ path('app_licorne_show', {'id': licorne.id}) }}" class="btn btn-info">Show</a>
+                            <a href="{{ path('app_licorne_edit', {'id': licorne.id}) }}" class="btn btn-warning">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_licorne_new') }}">Create new</a>
+        <a href="{{ path('app_licorne_new') }}" class="btn btn-success">Nouvelle licorne</a>
+    </div>
 {% endblock %}

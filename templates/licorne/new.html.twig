@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Licorne{% endblock %}
+{% block title %}Créer une licorne{% endblock %}
 
 {% block body %}
-    <h1>Create new Licorne</h1>
+    <h1>Créer une licorne</h1>
 
     {{ include('licorne/_form.html.twig') }}
 
-    <a href="{{ path('app_licorne_index') }}">back to list</a>
+    <a href="{{ path('app_licorne_index') }}">Retourn au scoreboard</a>
 {% endblock %}
