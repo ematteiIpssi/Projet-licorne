@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Licorne{% endblock %}
+
+{% block body %}
+    <h1>Edit Licorne</h1>
+
+    {{ include('licorne/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_licorne_index') }}">back to list</a>
+
+    {{ include('licorne/_delete_form.html.twig') }}
+{% endblock %}

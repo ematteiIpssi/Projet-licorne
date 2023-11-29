@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Licorne{% endblock %}
+
+{% block body %}
+    <h1>Licorne</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ licorne.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ licorne.nom }}</td>
+            </tr>
+            <tr>
+                <th>Strenght</th>
+                <td>{{ licorne.strenght }}</td>
+            </tr>
+            <tr>
+                <th>Intelligence</th>
+                <td>{{ licorne.intelligence }}</td>
+            </tr>
+            <tr>
+                <th>Esquive</th>
+                <td>{{ licorne.esquive }}</td>
+            </tr>
+            <tr>
+                <th>Pv</th>
+                <td>{{ licorne.pv }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_licorne_index') }}">back to list</a>
+
+    <a href="{{ path('app_licorne_edit', {'id': licorne.id}) }}">edit</a>
+
+    {{ include('licorne/_delete_form.html.twig') }}
+{% endblock %}
