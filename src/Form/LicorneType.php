@@ -6,6 +6,8 @@ use App\Entity\Licorne;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 class LicorneType extends AbstractType
 {
@@ -15,8 +17,7 @@ class LicorneType extends AbstractType
             ->add('nom')
             ->add('strenght')
             ->add('intelligence')
-            ->add('esquive')
-            ->add('pv')
+            ->add('esquive');
         ;
     }
 
@@ -24,6 +25,12 @@ class LicorneType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Licorne::class,
+            // 'constraints' =>[
+            //     new Assert\Expression([
+            //         'expression' => 'value["strenght"] + value["intelligence"] + value["esquive"] > 5',
+            //         'message'=> 'Les 10 points sont à répartir correctement'
+            //     ])
+            // ]
         ]);
     }
 }
