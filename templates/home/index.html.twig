@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('reussit_login') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+{% if app.user %}
+	<div class="mb-3">
+		You are logged in as
+		{{ app.user.userIdentifier }},
+		<a href="{{ path('app_logout') }}">Logout</a>
+	</div>
+{% endif %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="text-center">
+            <h1>Bienvenue sur la page d'accueil</h1>
+            <a class="btn btn-primary mb-2" href="{{ path('app_login') }}">Se connecter</a><br>
+            <a class="btn btn-secondary mb-2" href="{{ path('app_register') }}">S'inscrire</a><br>
+            <a class="btn btn-danger mb-2" href="{{ path('page_admin') }}">Page des scenario (Admin)</a><br>
+            <a class="btn btn-warning" href="{{ path('app_licorne_new') }}">Vos informations</a><br>
+        </div>
+    </div>
+{% endblock %}

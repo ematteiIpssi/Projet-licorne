@@ -13,10 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends AbstractController
 {
+
+    #[Route('/', name: 'home')]
+    public function home(): Response
+    {
+        return $this->render('home/index.html.twig');
+    }
+
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
+        $user->setRoles($user->getRoles());
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -31,7 +40,12 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+            
+            if($user->getRoles() == 'ROLE_ADMIN'){
+                return $this->redirectToRoute('app_scenario_index');
+            }else{
+                return $this->redirectToRoute('app_login');
+            }
 
         }
 
