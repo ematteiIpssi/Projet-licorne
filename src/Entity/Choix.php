@@ -21,7 +21,7 @@ class Choix
 
     #[ORM\ManyToOne(inversedBy: 'id_choix')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?scenario $id_scenario = null;
+    private ?Scenario $id_scenario = null;
 
     public function getId(): ?int
     {
@@ -52,12 +52,12 @@ class Choix
         return $this;
     }
 
-    public function getIdScenario(): ?scenario
+    public function getIdScenario(): ?Scenario
     {
         return $this->id_scenario;
     }
 
-    public function setIdScenario(?scenario $id_scenario): static
+    public function setIdScenario(?Scenario $id_scenario): static
     {
         $this->id_scenario = $id_scenario;
 
