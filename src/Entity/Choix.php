@@ -23,6 +23,9 @@ class Choix
     #[ORM\JoinColumn(nullable: false)]
     private ?Scenario $id_scenario = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $consequences = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Choix
     public function setIdScenario(?Scenario $id_scenario): static
     {
         $this->id_scenario = $id_scenario;
+
+        return $this;
+    }
+
+    public function getConsequences(): ?string
+    {
+        return $this->consequences;
+    }
+
+    public function setConsequences(string $consequences): static
+    {
+        $this->consequences = $consequences;
 
         return $this;
     }
