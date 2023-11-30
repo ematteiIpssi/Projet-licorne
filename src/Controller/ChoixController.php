@@ -6,6 +6,7 @@ use App\Entity\Choix;
 use App\Form\ChoixType;
 use App\Repository\ChoixRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Expr\Cast\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,5 +78,9 @@ class ChoixController extends AbstractController
         }
 
         return $this->redirectToRoute('app_choix_index', [], Response::HTTP_SEE_OTHER);
+    }
+    
+    public function parseConsequence(Choix $c){
+        return $stat[] = explode("_",$c->getConsequences());
     }
 }
