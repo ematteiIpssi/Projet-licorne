@@ -1,16 +1,13 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
-
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
 
 home:
-    path: /
-    controller: App\Controller\RegistrationController::home
-
+  path: /
+  controller: App\Controller\RegistrationController::home
 
 pageAdmin:
-    path: /pageAdmin
-    controller: App\Controller\ScenarioController::pageAdmin     
-
+  path: /pageAdmin
+  controller: App\Controller\UserController::pageAdmin

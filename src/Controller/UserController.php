@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class UserController extends AbstractController
 {
     #[Route('/pageAdmin', name: 'page_admin')]
-    #[IsGranted("ROLE_ADMIN,", message:"Access Denied. You must be an administrator.")]
+    #[IsGranted("ROLE_ADMIN", message:"Access Denied. You must be an administrator.")]
     public function accessAdminUsers(UserRepository $userRepository): Response
     {
         if (!$this->isGranted("ROLE_ADMIN")) {

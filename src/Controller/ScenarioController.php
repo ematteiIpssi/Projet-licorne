@@ -4,15 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Scenario;
 use App\Form\ScenarioType;
-use App\Repository\UserRepository;
 use App\Repository\ScenarioRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 #[Route('/scenario')]
 class ScenarioController extends AbstractController
@@ -82,19 +79,4 @@ class ScenarioController extends AbstractController
         return $this->redirectToRoute('app_scenario_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    // Voir la liste des utilisateurs pour les Admins
-    #[Route('/pageAdmin', name: 'page_admin')]
-    #[IsGranted("ROLE_ADMIN,", message:"Access Denied. You must be an administrator.")]
-    public function accessAdminUsers(UserRepository $userRepository): Response
-    {
-        if (!$this->isGranted("ROLE_ADMIN")) {
-            throw new AccessDeniedException("Access Denied. You must be an administrator.");
-        }
-
-        $users = $userRepository->findAll();
-
-        return $this->render('admin/admin.html.twig', [
-            'users' => $users,
-        ]);
-    }
 }
