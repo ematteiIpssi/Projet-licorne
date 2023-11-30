@@ -93,8 +93,9 @@ class Scenario
     }
 
     public function randomScenario(ScenarioRepository $sr,int $palier):Scenario{
-       $s = $sr->findAll();
+       $s = $sr->findBy(['palier'=>$palier]);
        $indexRandom = array_rand($s);
-       return $s = $sr->find($indexRandom);
+       $s = $s[$indexRandom];
+       return $s;
     }
 }

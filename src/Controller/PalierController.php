@@ -17,10 +17,9 @@ class PalierController extends AbstractController
     #[Route('/palier/{id}', name: 'app_palier')]
     public function index(ScenarioRepository $sr,LicorneRepository $lr,string $id): Response
     {
-        //SCENARIOS
-        // $scenario = $repertoire->find(random_int(0,$em->getRepository(Scenario::class)->count([])));
-        $scenario = $sr->find(3);
-       
+        //SCENARIO
+        $s= new Scenario();
+        $s=$s->randomScenario($sr,1);
         //LICORNE
         session_start();
         $_SESSION['idLicorne']=$id;
@@ -28,7 +27,7 @@ class PalierController extends AbstractController
         $l = $lr->find($id);
 
         return $this->render('palier/index.html.twig', [
-            'scenario' => $scenario,
+            'scenario' => $s,
             'licorne' => $l
         ]);
     }
