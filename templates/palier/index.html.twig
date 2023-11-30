@@ -1,19 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PalierController!{% endblock %}
+{% block title %}Palier
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
 
-<div class="example-wrapper">
-    <h1>Scénario : {{ scenario.nom }}</h1>
-    {% for choix in scenario.getIdChoix %}
-    <h2> <a href="{{path('app_consequence', {'id': choix.id })}}">{{ choix.nom}}<h2>
-    <p>{{choix.description}}<p>
-    {% endfor %}
-</div>
-        {{include("palier/_footer.html.twig")}}
-{% endblock %}
+		.choice-container {
+			width: 20%;
+			margin-top: 20px;
+			border: 1px solid #ccc; /* Ajoute une bordure */
+			padding: 20px; /* Ajoute un espace intérieur */
+			border-radius: 8px; /* Ajoute des coins arrondis */
+			text-align: center; /* Centre le contenu */
+		}
+
+        .container-justify-content{
+            justify-content: center !important;
+            display: flex;
+        }
+
+		.container {
+			text-align: center;
+			justify-content: center;
+		}
+
+		.choice-header {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+		.choice-title {
+			font-size: 20px;
+			margin-bottom: 5px;
+		}
+		.choice-description {
+			margin-bottom: 20px;
+		}
+	</style>
+
+	<div class="container">
+		<h1>Scénario :
+			{{ scenario.nom }}</h1>
+		<div class="container-justify-content">
+			{% for choix in scenario.getIdChoix %}
+				<div class="choice-container">
+					<h2 class="choice-header">
+						<a class="btn btn-primary" href="{{ path('app_consequence', {'id': choix.id }) }}">{{ choix.nom }}</a>
+					</h2>
+					<p class="choice-description">{{ choix.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+
+		{{ include('palier/_footer.html.twig') }}
+	{% endblock %}
