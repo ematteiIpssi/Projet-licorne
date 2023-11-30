@@ -1,46 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ScoreBoard{% endblock %}
+{% block title %}ScoreBoard
+{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1>Scordboard</h1>
+	<div class="container mt-5">
+		<h1>Scoreboard</h1>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Strenght</th>
-                    <th>Intelligence</th>
-                    <th>Esquive</th>
-                    <th>Pv</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for licorne in licornes %}
-                    <tr>
-                        <td>{{ licorne.id }}</td>
-                        <td>{{ licorne.nom }}</td>
-                        <td>{{ licorne.strenght }}</td>
-                        <td>{{ licorne.intelligence }}</td>
-                        <td>{{ licorne.esquive }}</td>
-                        <td>{{ licorne.pv }}</td>
-                        <td>
-                            <a href="{{ path('app_licorne_show', {'id': licorne.id}) }}" class="btn btn-info">Show</a>
-                            <a href="{{ path('app_licorne_edit', {'id': licorne.id}) }}" class="btn btn-warning">Edit</a>
-                            <a href="{{ path('app_palier', {'id': licorne.id}) }}" class="btn btn-warning">Jouer</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="7">No records found</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{{ path('app_licorne_new') }}" class="btn btn-success">Nouvelle licorne</a>
-        <a href="{{ path('home') }}" class="btn btn-warning">Retourn accueil</a>
-    </div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Strenght</th>
+					<th>Intelligence</th>
+					<th>Esquive</th>
+					<th>Pv</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for licorne in licornes %}
+					<tr>
+						<td>{{ licorne.id }}</td>
+						<td>{{ licorne.nom }}</td>
+						<td>{{ licorne.strenght }}</td>
+						<td>{{ licorne.intelligence }}</td>
+						<td>{{ licorne.esquive }}</td>
+						<td>{{ licorne.pv }}</td>
+						<td>
+							<a href="{{ path('app_licorne_show', {'id': licorne.id}) }}" class="btn btn-info">Show</a>
+							<a href="{{ path('app_licorne_edit', {'id': licorne.id}) }}" class="btn btn-warning">Edit</a>
+							<a href="{{ path('app_palier', {'id': licorne.id}) }}" class="btn btn-primary">Jouer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">No records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="{{ path('app_licorne_new') }}" class="btn btn-success">Nouvelle licorne</a>
+		<a href="{{ path('home') }}" class="btn btn-warning">Retourn accueil</a>
+	</div>
 {% endblock %}

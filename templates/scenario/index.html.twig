@@ -21,8 +21,8 @@
                 <td>{{ scenario.nom }}</td>
                 <td>{{ scenario.palier }}</td>
                 <td>
-                    <a href="{{ path('app_scenario_show', {'id': scenario.id}) }}">show</a>
-                    <a href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('app_scenario_show', {'id': scenario.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_scenario_edit', {'id': scenario.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_scenario_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_scenario_new') }}">Create new</a>
+    <a class="btn btn-warning" href="http://127.0.0.1:8000">Retour accueil</a>
 {% endblock %}
