@@ -11,7 +11,9 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Consequences</th>
+                <th>Scenario</th> {# Nouvelle colonne pour afficher le palier #}
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,14 +22,16 @@
                 <td>{{ choix.id }}</td>
                 <td>{{ choix.nom }}</td>
                 <td>{{ choix.description }}</td>
+                <td>{{ choix.consequences }}</td>
+                <td>{{ choix.idScenario.nom }}</td> {# Affiche le nom du palier lié au choix #}
                 <td>
-                    <a href="{{ path('app_choix_show', {'id': choix.id}) }}">show</a>
-                    <a href="{{ path('app_choix_edit', {'id': choix.id}) }}">edit</a>
+                    <a href="{{ path('app_choix_show', {'id': choix.id}) }}">Show</a>
+                    <a href="{{ path('app_choix_edit', {'id': choix.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="5">No records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -57,7 +57,7 @@ class PalierController extends AbstractController
         if(!$l->enVie($l)){
             $em->remove($l);
             $em->flush();
-            return $this->render('palier/gameOver.html.twig');
+            return $this->render('palier/win.html.twig');
         }
         $em->flush();
         if($palier==4){
