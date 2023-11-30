@@ -13,6 +13,8 @@
     {% for choix in scenario.getIdChoix %}
     <h2>{{ choix.nom}}<h2>
     <p>{{choix.description}}<p>
+    {{licorne.id}}
     {% endfor %}
 </div>
+        {{include("palier/_footer.html.twig")}}
 {% endblock %}
