@@ -15,6 +15,7 @@ class ChoixType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('id_scenario')
+            ->add('consequences')
         ;
     }
 

@@ -80,7 +80,5 @@ class ChoixController extends AbstractController
         return $this->redirectToRoute('app_choix_index', [], Response::HTTP_SEE_OTHER);
     }
     
-    public function parseConsequence(Choix $c){
-        return $stat[] = explode("_",$c->getConsequences());
-    }
+    
 }

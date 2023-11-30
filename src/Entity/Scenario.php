@@ -91,4 +91,10 @@ class Scenario
     public function __toString() {
         return $this->id;
     }
+
+    public function randomScenario(ScenarioRepository $sr,int $palier):Scenario{
+       $s = $sr->findAll();
+       $indexRandom = array_rand($s);
+       return $s = $sr->find($indexRandom);
+    }
 }

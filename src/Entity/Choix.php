@@ -78,4 +78,7 @@ class Choix
 
         return $this;
     }
+    public function parseConsequence(){
+        return $stat = explode("_",$this->getConsequences());
+    }
 }
