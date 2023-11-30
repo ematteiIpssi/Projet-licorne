@@ -9,12 +9,10 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/emili/OneDrive/Bureau/IPPSI/SYMFONY/Projet Licorne/src/Controller/PalierController.php'|file_link(0) }}">src/Controller/PalierController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/emili/OneDrive/Bureau/IPPSI/SYMFONY/Projet Licorne/templates/palier/index.html.twig'|file_link(0) }}">templates/palier/index.html.twig</a></code></li>
-    </ul>
+    <h1>Scénario : {{ scenario.nom }}</h1>
+    {% for choix in scenario.getIdChoix %}
+    <h2>{{ choix.nom}}<h2>
+    <p>{{choix.description}}<p>
+    {% endfor %}
 </div>
 {% endblock %}

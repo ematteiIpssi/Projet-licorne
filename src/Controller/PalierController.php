@@ -14,8 +14,8 @@ class PalierController extends AbstractController
     #[Route('/palier', name: 'app_palier')]
     public function index(EntityManagerInterface $em, ScenarioRepository $repertoire): Response
     {
-        $scenario = $repertoire->find(random_int(0,$em->getRepository(Scenario::class)->count([])));
-
+        // $scenario = $repertoire->find(random_int(0,$em->getRepository(Scenario::class)->count([])));
+        $scenario = $repertoire->find(3);
         return $this->render('palier/index.html.twig', [
             'controller_name' => 'PalierController',
             'scenario' => $scenario
