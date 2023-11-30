@@ -57,11 +57,11 @@ class PalierController extends AbstractController
         if(!$l->enVie($l)){
             $em->remove($l);
             $em->flush();
-            return $this->render('palier/win.html.twig');
+            return $this->render('palier/gameOver.html.twig');
         }
         $em->flush();
-        if($palier==4){
-            return $this->render('palier/index.html.twig');
+        if($palier>3){
+            return $this->render('palier/win.html.twig');
         }
         $s = (new Scenario())->randomScenario($sr,$palier);
         return $this->render('palier/index.html.twig',[
