@@ -92,11 +92,24 @@ class Licorne
 
         return $this;
     }
+
     public function licorneEnJeu(LicorneRepository $lr):Licorne
     {
         session_start();
         $l = new Licorne(); 
         $l = $lr->find($_SESSION['idLicorne']);
         return $l;
+    }
+
+    public function enVie(Licorne $l): bool{
+        $c=new Choix();
+        if(($l->getStrenght() == 0 && $l->getIntelligence()==0 && $l->getEsquive()==0) || ($l->getPv()<=0))
+            return false;
+        else if($l->getStrenght()<0 || $l->getIntelligence()<0 || $l->getEsquive()<0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

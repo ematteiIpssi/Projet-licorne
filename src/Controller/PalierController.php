@@ -8,22 +8,24 @@ use App\Entity\Scenario;
 use App\Repository\ChoixRepository;
 use App\Repository\LicorneRepository;
 use App\Repository\ScenarioRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\EntityManagerRegistry;
 
 class PalierController extends AbstractController
 {
     #[Route('/palier/{id}', name: 'app_palier')]
     public function index(ScenarioRepository $sr,LicorneRepository $lr,string $id): Response
     {
+        
         //SCENARIO
-        $s= new Scenario();
-        $s=$s->randomScenario($sr,1);
-        //LICORNE
+        $s= (new Scenario())->randomScenario($sr,1);
+        //LICORNE   
         session_start();
         $_SESSION['idLicorne']=$id;
-        $l = new Licorne();
         $l = $lr->find($id);
 
         return $this->render('palier/index.html.twig', [
@@ -33,14 +35,10 @@ class PalierController extends AbstractController
     }
     
     #[Route('/palier/choix/{id}', name: 'app_consequence')]
-    public function consequence(Choix $id,ChoixRepository $c,LicorneRepository $lr,ScenarioRepository $sr):Response{
-
-        $monChoix = $c->find($id);
-        $consequence =$monChoix->parseConsequence();
-        $l = new Licorne();
-        $l=$l->licorneEnJeu($lr);
-
-        switch($consequence[0]){
+    public function consequence(Choix $id,ChoixRepository $cr,LicorneRepository $lr,ScenarioRepository $sr, EntityManagerInterface $em):Response{
+        $consequence = ($cr->find($id))->parseConsequence();
+        $l = (new Licorne())->licorneEnJeu(($lr));
+        switch($consequence[1]){
             case 'i':
                 $l->setIntelligence($l->getIntelligence()-$consequence[0]);
                 break;
@@ -54,13 +52,16 @@ class PalierController extends AbstractController
                 $l->setPv($l->getPv()-$consequence[0]);
                 break;
         }
-        $s = new Scenario();
-        $s->randomScenario($sr,2);
+        if(!$l->enVie($l)){
+            $em->remove($l);
+            $em->flush();
+            return $this->render('palier/gameOver.html.twig');
+        }
+        $em->flush();
+        $s = (new Scenario())->randomScenario($sr,2);
         return $this->render('palier/index.html.twig',[
             'scenario' => $s,
             'licorne' => $l
         ]);
-    }
-
-    
+    }    
 }
