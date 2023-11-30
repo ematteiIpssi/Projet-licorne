@@ -20,9 +20,9 @@ class PalierController extends AbstractController
     #[Route('/palier/{id}', name: 'app_palier')]
     public function index(ScenarioRepository $sr,LicorneRepository $lr,string $id): Response
     {
-        
+        $palier="1";
         //SCENARIO
-        $s= (new Scenario())->randomScenario($sr,1);
+        $s= (new Scenario())->randomScenario($sr,$palier);
         //LICORNE   
         session_start();
         $_SESSION['idLicorne']=$id;
@@ -30,12 +30,14 @@ class PalierController extends AbstractController
 
         return $this->render('palier/index.html.twig', [
             'scenario' => $s,
-            'licorne' => $l
+            'licorne' => $l,
+            'palier' => $palier
         ]);
     }
     
-    #[Route('/palier/choix/{id}', name: 'app_consequence')]
-    public function consequence(Choix $id,ChoixRepository $cr,LicorneRepository $lr,ScenarioRepository $sr, EntityManagerInterface $em):Response{
+    #[Route('/palier/choix/{id}/{palier}', name: 'app_consequence')]
+    public function consequence(Choix $id,ChoixRepository $cr,LicorneRepository $lr,ScenarioRepository $sr, EntityManagerInterface $em,string $palier):Response{
+        $palier=$palier+1;
         $consequence = ($cr->find($id))->parseConsequence();
         $l = (new Licorne())->licorneEnJeu(($lr));
         switch($consequence[1]){
@@ -58,10 +60,14 @@ class PalierController extends AbstractController
             return $this->render('palier/gameOver.html.twig');
         }
         $em->flush();
-        $s = (new Scenario())->randomScenario($sr,2);
+        if($palier==4){
+            return $this->render('palier/index.html.twig');
+        }
+        $s = (new Scenario())->randomScenario($sr,$palier);
         return $this->render('palier/index.html.twig',[
             'scenario' => $s,
-            'licorne' => $l
+            'licorne' => $l,
+            'palier'=> $palier
         ]);
     }    
 }

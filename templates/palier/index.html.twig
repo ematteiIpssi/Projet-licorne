@@ -54,7 +54,7 @@
 			{% for choix in scenario.getIdChoix %}
 				<div class="choice-container">
 					<h2 class="choice-header">
-						<a class="btn btn-primary" href="{{ path('app_consequence', {'id': choix.id }) }}">{{ choix.nom }}</a>
+						<a class="btn btn-primary" href="{{ path('app_consequence', {id: choix.id, 'palier': palier}) }}">{{ choix.nom }}</a>
 					</h2>
 					<p class="choice-description">{{ choix.description }}</p>
 				</div>
