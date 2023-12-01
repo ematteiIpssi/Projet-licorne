@@ -54,8 +54,26 @@
 			{% for choix in scenario.getIdChoix %}
 				<div class="choice-container">
 					<h2 class="choice-header">
-						<a class="btn btn-primary" href="{{ path('app_consequence', {id: choix.id, 'palier': palier}) }}">{{ choix.nom }}</a>
+						<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{choix.id}}">{{ choix.nom }}</a>
 					</h2>
+					<div class="modal fade" id="modal{{choix.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Conséquences : </h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									{{choix.consequenceToString}}
+								</div>
+								<div class="modal-footer">
+									<a href="{{ path('app_consequence', {id: choix.id, 'palier': palier}) }}" type="button" class="btn btn-primary">Suivant</a>
+								</div>
+							</div>
+						</div>
+					</div>
 					<p class="choice-description">{{ choix.description }}</p>
 				</div>
 			{% endfor %}
