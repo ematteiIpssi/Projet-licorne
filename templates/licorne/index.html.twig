@@ -4,6 +4,15 @@
 {% endblock %}
 
 {% block body %}
+	<style>
+	.container-story{
+		margin: 15rem 15rem;
+	}
+
+	.container-story p{
+		font-size: 20px;
+	}
+	</style>
 	<div class="container mt-5">
 		<h1>Scoreboard</h1>
 
@@ -43,5 +52,11 @@
 		</table>
 		<a href="{{ path('app_licorne_new') }}" class="btn btn-success">Nouvelle licorne</a>
 		<a href="{{ path('home') }}" class="btn btn-warning">Retourn accueil</a>
+	</div>
+
+	<div class="container-story text-center border p-4 mt-5">
+		<h2>Synopsis</h2><br>
+		<p>L'espèce humaine à découvert votre race de <strong>licorne intelligente</strong> dans un coin perdu. Ils ont décidés d'enfermer toutes l'espèces dans un complex.
+						Vous êtes une licorne enfermé par le gouvernement pour étudier son comportement en société et voir si l'espèce humaine peut vivre en cohésion avec la vôtre. Vos choix sont déterminant pour votre espèce.</p>
 	</div>
 {% endblock %}

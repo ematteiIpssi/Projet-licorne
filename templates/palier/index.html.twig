@@ -10,6 +10,14 @@
 			background-size: cover;
 
 		}
+
+		.scenario-title{
+			color: black;
+			padding: 1rem;
+			border-radius: 50rem;
+			backdrop-filter: blur(5px);
+		}
+
 		.example-wrapper {
 			margin: 1em auto;
 			max-width: 800px;
@@ -60,7 +68,7 @@
 		}
 	</style>
 	<div class="container">
-		<h1>Scénario :
+		<h1 class="scenario-title">Scénario :
 			{{ scenario.nom }}</h1>
 		<div class="row container-justify-content">
 			{% for choix in scenario.getIdChoix %}
@@ -88,7 +96,7 @@
 					</div>
 				</div>
 			{% endfor %}
-			<div class="container">
+			<div class="container stats-container">
 				<div class="row fixed-bottom justify-content-center">
 					<div class="col-md-8">
 						<div class="example-wrapper text-center py-3 border rounded shadow bg-light">
