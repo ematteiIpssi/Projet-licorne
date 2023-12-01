@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+	{% for message in app.flashes('reussit_login') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
 	<div class="container mt-5">
 		<h1>Page Admin</h1>
 		<div class="container">
@@ -12,7 +17,5 @@
 			<a class="btn btn-primary mb-2" href="{{ path('app_choix_index') }}">Liste des choix</a><br>
 			<a class="btn btn-secondary mb-2" href="{{ path('app_choix_new') }}">Créer un choix<a><br>
 				</div>
-				<a style="margin-top: 5rem;" class="btn btn-warning mb-2" href="http://127.0.0.1:8000/">Retourn à l'accueil<a>
-
-					</div>
+				<a style="margin-top: 5rem;" class="btn btn-warning mb-2" href="http://127.0.0.1:8000/">Retourn à l'accueil<a></div>
 				{% endblock %}

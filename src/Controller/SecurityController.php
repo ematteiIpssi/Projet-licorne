@@ -21,7 +21,8 @@ class SecurityController extends AbstractController
 
         $user = new User();
         $user->setRoles($user->getRoles());
-
+        
+        $this->addFlash('reussit_login', 'Vous êtes maintenant connecté.');
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
