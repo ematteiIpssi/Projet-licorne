@@ -81,4 +81,22 @@ class Choix
     public function parseConsequence(){
         return $stat = explode("_",$this->getConsequences());
     }
+    public function consequenceToString(): string{
+        $array = $this->parseConsequence();
+        switch($array[1]){
+            case 'i':
+                $array[1] ='Intelligence';
+                break;
+            case 'p':
+                $array[1] = 'PV';
+                break;
+            case 's':
+                $array[1] ='Strenght';
+                break;
+            case 'e':
+                $array[1] ='Esquive';
+                break;
+        }
+        return "-".$array[0]." ".$array[1];
+    }
 }
