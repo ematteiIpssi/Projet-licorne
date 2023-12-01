@@ -3,7 +3,7 @@
 {% block title %}Choix index{% endblock %}
 
 {% block body %}
-    <h1>Choix index</h1>
+    <h1>Liste des choix</h1>
 
     <table class="table">
         <thead>
@@ -25,8 +25,8 @@
                 <td>{{ choix.consequences }}</td>
                 <td>{{ choix.idScenario.nom }}</td> {# Affiche le nom du palier lié au choix #}
                 <td>
-                    <a href="{{ path('app_choix_show', {'id': choix.id}) }}">Show</a>
-                    <a href="{{ path('app_choix_edit', {'id': choix.id}) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ path('app_choix_show', {'id': choix.id}) }}">Show</a>
+                    <a class="btn btn-warning" href="{{ path('app_choix_edit', {'id': choix.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_choix_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_choix_new') }}">Nouveau choix</a>
 {% endblock %}

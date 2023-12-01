@@ -5,6 +5,11 @@
 
 {% block body %}
 	<style>
+		body {
+			background: url('{{ asset('assets/images/licorne.jpg') }}') no-repeat center center fixed;
+			background-size: cover;
+
+		}
 		.example-wrapper {
 			margin: 1em auto;
 			max-width: 800px;
@@ -17,7 +22,10 @@
 		}
 
 		.choice-container {
+			transition: transform 0.5s ease-in-out;
 			width: 20%;
+			background-color: white;
+			margin-right: 2rem;
 			margin-top: 20px;
 			border: 1px solid #ccc; /* Ajoute une bordure */
 			padding: 20px; /* Ajoute un espace intérieur */
@@ -25,9 +33,13 @@
 			text-align: center; /* Centre le contenu */
 		}
 
+		.choice-container:hover {
+			transform: scale(1.2);
+		}
+
 		.container-justify-content {
 			justify-content: center !important;
-			display: flex;
+			display: flex !important;
 		}
 
 		.container {
@@ -50,34 +62,51 @@
 	<div class="container">
 		<h1>Scénario :
 			{{ scenario.nom }}</h1>
-		<div class="container-justify-content">
+		<div class="row container-justify-content">
 			{% for choix in scenario.getIdChoix %}
-				<div class="choice-container">
+				<div class="choice-container mr-2">
 					<h2 class="choice-header">
 						<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{choix.id}}">{{ choix.nom }}</a>
 					</h2>
-					<div class="modal fade" id="modal{{choix.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Conséquences : </h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									{{choix.consequenceToString}}
-								</div>
-								<div class="modal-footer">
-									<a href="{{ path('app_consequence', {id: choix.id, 'palier': palier}) }}" type="button" class="btn btn-primary">Suivant</a>
-								</div>
+					<p class="choice-description">{{ choix.description }}</p>
+				</div>
+				<div class="modal fade" id="modal{{choix.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Conséquences :
+								</h5>
+								</button>
+							</div>
+							<div class="modal-body">
+								{{choix.consequenceToString}}
+							</div>
+							<div class="modal-footer">
+								<a href="{{ path('app_consequence', {id: choix.id, 'palier': palier}) }}" type="button" class="btn btn-primary">Suivant</a>
 							</div>
 						</div>
 					</div>
-					<p class="choice-description">{{ choix.description }}</p>
 				</div>
 			{% endfor %}
-		</div>
+			<div class="container">
+				<div class="row fixed-bottom justify-content-center">
+					<div class="col-md-8">
+						<div class="example-wrapper text-center py-3 border rounded shadow bg-light">
+							<p class="mb-0">
+								<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">{{ licorne.nom }}</span>
+								<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">PV :
+									{{ licorne.pv }}</span>
+								<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Intelligence :
+									{{ licorne.intelligence }}</span>
+								<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Force :
+									{{ licorne.strenght }}</span>
+								<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Esquive :
+									{{ licorne.esquive }}</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-		{{ include('palier/_footer.html.twig') }}
-	{% endblock %}
+
+		{% endblock %}

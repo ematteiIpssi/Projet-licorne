@@ -1,25 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        {# Votre contenu de page ici #}
-    </div>
+	<style>
+		body {
+			background: url('{{ asset('assets/images/licorne.jpg') }}') no-repeat center center fixed;
+			background-size: cover;
+		}
+	</style>
 
-    <footer class="fixed-bottom bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="example-wrapper text-center py-3 border rounded shadow bg-light">
-                        <p class="mb-0">
-                            <span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">{{ licorne.nom }}</span>
-                            <span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">PV : {{ licorne.pv }}</span>
-                            <span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Intelligence : {{ licorne.intelligence }}</span>
-                            <span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Force : {{ licorne.strenght }}</span> 
-                            <span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Esquive : {{ licorne.esquive }}</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+	<footer class="fixed-bottom bg-light">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<div class="example-wrapper text-center py-3 border rounded shadow bg-light">
+						<p class="mb-0">
+							<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">{{ licorne.nom }}</span>
+							<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">PV :
+								{{ licorne.pv }}</span>
+							<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Intelligence :
+								{{ licorne.intelligence }}</span>
+							<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Force :
+								{{ licorne.strenght }}</span>
+							<span class="border rounded shadow p-2 pl-2 pr-2 m-4 bg-warning">Esquive :
+								{{ licorne.esquive }}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 {% endblock %}
